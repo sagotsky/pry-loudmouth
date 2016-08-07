@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Jon Sagotsky"]
   spec.email         = ["sagotsky@gmail.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
+  spec.summary       = %q{Make pry sessions announce when they start.}
+  spec.description   = %q{When a pry session starts, change the process title and alert user with a terminal bell.  Switch back to ruby process afterwards.}
   spec.homepage      = "TODO: Put your gem's website or public repo URL here."
   spec.license       = "MIT"
 
