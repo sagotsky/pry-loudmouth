@@ -1,8 +1,12 @@
 # Pry::Loudmouth
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/pry/loudmouth`. To experiment with that code, run `bin/console` for an interactive prompt.
+Pry-Loudmouth is a dead simple pry plugin.  It's actually just 7 lines from my .pryrc that I thought was worth gemifying.  Here's what it does:
 
-TODO: Delete this and the text above, and describe your gem
+1. Terminal bell when a pry session starts
+2. Changes your process name to "pry" when the session starts
+3. Resets the process name to "ruby" when it ends.
+
+(The process name appears in your terminal or tmux title.)
 
 ## Installation
 
@@ -20,20 +24,25 @@ Or install it yourself as:
 
     $ gem install pry-loudmouth
 
-## Usage
+## Local installation
 
-TODO: Write usage instructions here
+If you're really opinionated about not adding extra cruft to your Gemfile, try this instead.
 
-## Development
+Install pry-loudmouth
+    $ gem install pry-loudmouth
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake false` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+And add this to your .pryrc:
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+```ruby
+require 'rubygems'
 
-## Contributing
+Gem.path.each do |gemset|
+  $:.concat(Dir.glob("#{gemset}/gems/pry-*/lib"))
+end if defined?(Bundler)
+$:.uniq!
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/pry-loudmouth.
-
+require 'pry-loudmouth'
+```
 
 ## License
 
