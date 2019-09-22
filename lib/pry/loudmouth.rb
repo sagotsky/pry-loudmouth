@@ -1,16 +1,20 @@
-require "pry/loudmouth/version"
+# frozen_string_literal: true
 
-module Pry::Loudmouth
-  def self.add_before_hook!
-    Pry.hooks.add_hook :before_session, 'pry-loudmouth:announce_entrance' do |a,b,c|
-      print "\a"
-      Process.setproctitle 'pry'
+require 'pry/loudmouth/version'
+
+module Pry
+  module Loudmouth
+    def self.add_before_hook!
+      Pry.hooks.add_hook :before_eval, 'pry-loudmouth:eval' do
+        Process.setproctitle 'ruby'
+      end
     end
-  end
 
-  def self.add_after_hook!
-    Pry.hooks.add_hook :after_session, 'pry-loudmouth:pry_has_left_the_building' do
-      Process.setproctitle 'ruby'
+    def self.add_after_hook!
+      Pry.hooks.add_hook :after_eval, 'pry-loudmouth:all-done' do
+        print "\a"
+        Process.setproctitle 'pry'
+      end
     end
   end
 end
