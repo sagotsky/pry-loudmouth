@@ -1,0 +1,3 @@
+# v 0.1.1 09/22/19
+
+Fixed bug.  Had wrong binding.pry hook.  Not sure how it ever worked.
